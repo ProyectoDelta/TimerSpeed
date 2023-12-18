@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
   configurarTamañoTimer = configurarTamañoTimerInput.value;
   timerNumeros.style.fontSize = configurarTamañoTimer + "px";
   if (configurarTamañoTimer > tamañoMaximoTimer) {
@@ -144,7 +144,7 @@ let obtenerIncremento = () => {
 const agregarElementoTiempo = (valor) => {
   const nuevoElementoTiempo = document.createElement("div");
   nuevoElementoTiempo.className = "elemento-tiempo";
- 
+
   // Crear un ícono con la clase de Boxicons
   const icono = document.createElement("i");
   icono.className = "bx bx-x x-especial";
@@ -263,7 +263,7 @@ const actualizarPromedioUltimos5 = () => {
 const calcularPromedioUltimos12 = () => {
   if (ultimosTiempos.length >= 12) {
     const ultimos12Tiempos = ultimosTiempos.slice(-12);
-    const tiemposOrdenados = ultimos12Tiempos.sort((a, b) => a - b); 
+    const tiemposOrdenados = ultimos12Tiempos.sort((a, b) => a - b);
     const tiemposIntermedios = tiemposOrdenados.slice(1, -1);
 
     const total = tiemposIntermedios.reduce((acc, tiempo) => acc + tiempo, 0);
@@ -451,33 +451,56 @@ const keydownHandler = (e) => {
     }
   }
 };
-const clickHandler = () => {
-  espaciados++;
-  if (inspeccionSi.checked) {
-    if (espaciados === 1) {
-      mostrarInspeccion();
-    } else if (espaciados === 2) {
-      empezar();
-      detenerContador();
-    } else if (espaciados === 0) {
-      tiempoDisplay.textContent = parseFloat(0).toFixed(decimales);
-    } else {
-      detener();
-    }
-  } else {
-    if (espaciados === 1) {
-      empezar();
-    } else if (espaciados === 2) {
-      detener();
-    } else if (espaciados === 0) {
-      tiempoDisplay.textContent = parseFloat(0).toFixed(decimales);
-    }
-  }
-};
-if(window.innerWidth > 767){
+
+if (window.innerWidth > 767) {
   document.addEventListener('keydown', keydownHandler);
-}else{
-  tiempoDisplay.addEventListener("click", clickHandler);
+} else {
+  tiempoDisplay.addEventListener("click", () => {
+    espaciados++;
+    if (inspeccionSi.checked) {
+      if (espaciados === 1) {
+        mostrarInspeccion();
+      } else if (espaciados === 2) {
+        empezar();
+        detenerContador();
+      } else if (espaciados === 0) {
+        tiempoDisplay.textContent = parseFloat(0).toFixed(decimales);
+      } else {
+        detener();
+      }
+    } else {
+      if (espaciados === 1) {
+        empezar();
+      } else if (espaciados === 2) {
+        detener();
+      } else if (espaciados === 0) {
+        tiempoDisplay.textContent = parseFloat(0).toFixed(decimales);
+      }
+    }
+  });
+  inspeccionar.addEventListener("click",()=>{
+    espaciados++;
+    if (inspeccionSi.checked) {
+      if (espaciados === 1) {
+        mostrarInspeccion();
+      } else if (espaciados === 2) {
+        empezar();
+        detenerContador();
+      } else if (espaciados === 0) {
+        tiempoDisplay.textContent = parseFloat(0).toFixed(decimales);
+      } else {
+        detener();
+      }
+    } else {
+      if (espaciados === 1) {
+        empezar();
+      } else if (espaciados === 2) {
+        detener();
+      } else if (espaciados === 0) {
+        tiempoDisplay.textContent = parseFloat(0).toFixed(decimales);
+      }
+    }
+  });
 }
 
 
@@ -604,16 +627,16 @@ let tamañoMinimoTimer;
 
 function ajustarTamañoTimerSegunAnchoPantalla() {
   const anchoPantalla = window.innerWidth;
-  if(anchoPantalla <= 767){
+  if (anchoPantalla <= 767) {
     tamañoMaximoTimer = 110;
     tamañoMinimoTimer = 15;
-  }else if(anchoPantalla <= 1023){
+  } else if (anchoPantalla <= 1023) {
     tamañoMaximoTimer = 200;
     tamañoMinimoTimer = 30;
-  }else if(anchoPantalla <= 1279){
+  } else if (anchoPantalla <= 1279) {
     tamañoMaximoTimer = 250;
     tamañoMinimoTimer = 30;
-  }else{
+  } else {
     tamañoMaximoTimer = 300;
     tamañoMinimoTimer = 30;
   }
@@ -648,77 +671,77 @@ function actualizarTamañoScramble() {
     case "pyram":
     case "skewb":
     case "sq1":
-      if(anchoPantalla <= 767){
+      if (anchoPantalla <= 767) {
         tamañoMaximoScramble = 25;
-        tamañoMinimoScramble= 15;
-      }else if(anchoPantalla <= 1023){
+        tamañoMinimoScramble = 15;
+      } else if (anchoPantalla <= 1023) {
         tamañoMaximoScramble = 35;
         tamañoMinimoScramble = 20;
-      }else if(anchoPantalla <= 1279){
+      } else if (anchoPantalla <= 1279) {
         tamañoMaximoScramble = 45;
         tamañoMinimoScramble = 20;
-      }else{
+      } else {
         tamañoMaximoScramble = 50;
         tamañoMinimoScramble = 20;
       }
       break;
     case "444":
-      if(anchoPantalla <= 767){
+      if (anchoPantalla <= 767) {
         tamañoMaximoScramble = 20;
-        tamañoMinimoScramble= 10;
-      }else if(anchoPantalla <= 1023){
+        tamañoMinimoScramble = 10;
+      } else if (anchoPantalla <= 1023) {
         tamañoMaximoScramble = 30;
         tamañoMinimoScramble = 15;
-      }else if(anchoPantalla <= 1279){
+      } else if (anchoPantalla <= 1279) {
         tamañoMaximoScramble = 35;
         tamañoMinimoScramble = 20;
-      }else{
+      } else {
         tamañoMaximoScramble = 40;
         tamañoMinimoScramble = 20;
       }
       break;
     case "555":
-      if(anchoPantalla <= 767){
+      if (anchoPantalla <= 767) {
         tamañoMaximoScramble = 15;
-        tamañoMinimoScramble= 10;
-      }else if(anchoPantalla <= 1023){
+        tamañoMinimoScramble = 10;
+      } else if (anchoPantalla <= 1023) {
         tamañoMaximoScramble = 20;
         tamañoMinimoScramble = 15;
-      }else if(anchoPantalla <= 1279){
+      } else if (anchoPantalla <= 1279) {
         tamañoMaximoScramble = 30;
         tamañoMinimoScramble = 20;
-      }else{
+      } else {
         tamañoMaximoScramble = 30;
         tamañoMinimoScramble = 20;
       }
       break;
     case "666":
     case "minx":
-      if(anchoPantalla <= 767){
+      if (anchoPantalla <= 767) {
         tamañoMaximoScramble = 15;
-        tamañoMinimoScramble= 5;
-      }else if(anchoPantalla <= 1023){
+        tamañoMinimoScramble = 5;
+      } else if (anchoPantalla <= 1023) {
         tamañoMaximoScramble = 18;
         tamañoMinimoScramble = 10;
-      }else if(anchoPantalla <= 1279){
+      } else if (anchoPantalla <= 1279) {
         tamañoMaximoScramble = 25;
         tamañoMinimoScramble = 20;
-      }else{
+      } else {
         tamañoMaximoScramble = 25;
         tamañoMinimoScramble = 20;
       }
       break;
     case "777":
-      if(anchoPantalla <= 767){
+      if (anchoPantalla <= 767) {
         tamañoMaximoScramble = 14;
-        tamañoMinimoScramble= 7;
-      }else if(anchoPantalla <= 1023){
+        tamañoMinimoScramble = 7;
+      } else if (anchoPantalla <= 1023) {
         tamañoMaximoScramble = 16;
         tamañoMinimoScramble = 10;
-      }else if(anchoPantalla <= 1279){
+      } else if (anchoPantalla <= 1279) {
         tamañoMaximoScramble = 18;
         tamañoMinimoScramble = 14;
-      }else{
+      } else {
         tamañoMaximoScramble = 20;
         tamañoMinimoScramble = 15;
       }
