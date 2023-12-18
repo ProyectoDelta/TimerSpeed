@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.cubing.net/js/cubing/twisty" type="module"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <section>
+        <div class="seccion-principal">
+            <div class="seccion-configuracion">
+                <i class='bx bxs-cog icono-config'></i>
+            </div>
+            
+            
+            <div class="contenedor-scramble">
+                <select id="event-select" class="categoria">
+                    <option value="222">2x2x2</option>
+                    <option value="333" selected>3x3x3</option>
+                    <option value="444">4x4x4</option>
+                    <option value="555">5x5x5</option>
+                    <option value="666">6x6x6</option>
+                    <option value="777">7x7x7</option>
+                    <option value="minx">Megaminx</option>
+                    <option value="pyram">Pyraminx</option>
+                    <option value="skewb">Skewb</option>
+                    <option value="sq1">Square 1</option>
+                </select>
+                <div id="scramble"></div>
+                <button id="generate-scramble"><i class='bx bx-refresh'></i></button>
+            </div>
+            <div class="contenedor-cronometro">
+                <div class="inspeccion"></div>
+                <div class="tiempo">0.0</div>
+                <div class="sentencias-de-tiempo">
+                    <p class="mas2">+2</p>
+                    <p class="dnf">DNF</p>
+                </div>
+            </div>
+            <div class="contenedor-de-datos-absoluto">
+                <div class="seccion-tiempos-y-promedios">
+                    <div class="lista-de-tiempos"></div>
+                    <div class="total-de-tiempos">
+                        <p>Tiempos realizados:</p>
+                        <p class="tiemposRealizados">0</p>
+                    </div>
+                    <div class="imagen-scramble">
+                        <twisty-player background="none" control-panel="none" visualization="2D" style="border: 2px solid var(--color-bordes); border-radius: 10px; width: 200px;
+                        height: 160px;"></twisty-player>
+                    </div>
+            </div>
+            <div class="conjunto-de-datos">
+                <div class="datos-relevante">
+                    <p>Avg 12</p>
+                    <p class="Avg12">0</p>
+                </div>
+                <div class="datos-relevante">
+                    <p>Avg 5</p>
+                    <p class="Avg5">0</p>
+                </div>
+    
+                <div class="datos-relevante">
+                    <p>Avg Total</p>
+                    <p class="AvgT">0</p>
+                </div>
+    
+                <div class="peor-tiempo">
+                    <div class="datos-relevante especial-tiempo">
+                        <p>Peor tiempo</p>
+                        <p class="tiempo-mas-lento">0</p>
+                    </div>
+                </div>
+                <div class="mejor-tiempo">
+                    <div class="datos-relevante especial-tiempo">
+                        <p>Mejor tiempo</p>
+                        <p class="tiempo-mas-rapido mejor-tiempo-animacion">0</p>
+                    </div>
+                </div>
+    
+            </div>
+            </div>
+            
+            
+            
+            
+        </div>
+    </section>
+    
+    <div class="seccion-de-configuraciones">
+        <div class="salir-de-configuraciones">
+            <i class='bx bx-x x-confi'></i>
+        </div>
+        
+        <div class="titulo">
+            Configuraciones
+        </div>
+        <div class="conjunto-de-configuraciones">
+            <div class="conjunto-real-de-configuraciones">
+                <div class="inspeccionar">
+                    Tiempo de inspeccion
+                    <label for="inspeccionSi">Si</label>
+                    <input type="radio" id="inspeccionSi" checked name="inspeccionar">
+                    <label for="inspeccionNo">No</label>
+                    <input type="radio" id="inspeccionNo" name="inspeccionar">
+                </div>
+                
+                <div class="decimales campo-input">
+                    Número de decimales:
+                    <input type="number" id="decimales" value="1" max="3" min="0">
+                </div>
+                <div class="colores">
+                    <div class="color">
+                        <p class="titulo-de-colores">Blanco y Negro</p>
+                        <div class="rectangulo-grande seleccionado" id="blancoNegro">
+                            <div class="rectangulo1 rectangulo-blanco"></div>
+                            <div class="rectangulo2 rectangulo-negro"></div>
+                        </div>
+                    </div>
+                    <div class="color">
+                        <p class="titulo-de-colores">Futurista</p>
+                        <div class="rectangulo-grande" id="Futurista">
+                            <div class="rectangulo1 rectangulo-negro-ciberPunk"></div>
+                            <div class="rectangulo2 rectangulo-verde-ciberPunk"></div>
+                        </div>
+                    </div>
+                    <div class="color">
+                        <p class="titulo-de-colores">Dark</p>
+                        <div class="rectangulo-grande" id="Dark">
+                            <div class="rectangulo1 rectangulo-gris-dark"></div>
+                            <div class="rectangulo2 rectangulo-gris-dark"></div>
+                        </div>
+                    </div>
+                    <div class="personalizar">
+                        <button id="personalizar" class="rectangulo-grande">Personalizar</button>
+                    </div>
+                    <div class="seleccionar-colores">
+                        <label for="color-de-fondo">Color de fondo</label>
+                        <input type="color" id="color-de-fondo" value="#ffffff">
+                        <label for="color-del-texto">Color del texto</label>
+                        <input type="color" id="color-del-texto" value="#000000">
+                        <label for="color-de-los-bordes">Color de los bordes</label>
+                        <input type="color" id="color-de-los-bordes" value="#000000">
+                        <div class="subir-imagen-de-fondo">
+                            <label for="imgInput" class="boton-subir-img">Subir imagen de fondo</label>
+                            <input type="file" id="imgInput" class="imagen-de-fondo">
+                            <button class="quitar-imagen-de-fondo">Quitar imagen de fondo</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="tamaños-de-fuente">
+                    <div class="tamano-de-fuente-timer campo-input">
+                        <label for="fuente-tamaño-timer">Tamaño de fuente del timer</label>
+                        <input type="number" id="fuente-tamaño-timer" class="configurar-tamaño-fuente-timer" max="200" min="30" value="150">
+                    </div>
+                    <div class="tamano-de-fuente-scramble campo-input" >
+                        <label for="fuente-tamaño-scramble">Tamaño de fuente del scramble</label>
+                        <input type="number" id="fuente-tamaño-scramble" class="configurar-tamaño-fuente-scramble" max="30" min="20" value="24">
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+        
+    </div>
+
+
+    <script type="module">
+        import { TwistyAlgViewer } from "https://cdn.cubing.net/js/cubing/twisty";
+        import { randomScrambleForEvent } from "https://cdn.cubing.net/js/cubing/scramble";
+        import { eventInfo } from "https://cdn.cubing.net/js/cubing/puzzles";
+    
+        let event;
+    
+        window.onload = function () {
+            // Establecer event en "333" si no hay un parámetro "event" en la URL
+            if (!new URL(location.href).searchParams.has("event")) {
+                var url = new URL(window.location.href);
+                url.searchParams.set("event", "333");
+                window.history.replaceState({}, '', url);
+                event = "333";  // Establecer event en "333"
+            } else {
+                // Obtener el valor de "event" de la URL
+                event = new URL(location.href).searchParams.get("event");
+            }
+    
+            // Si hay un evento en la URL, generar el scramble
+            const twistyPlayer = document.querySelector("twisty-player");
+            let scrambleElement = document.getElementById('scramble');
+            if (!scrambleElement) {
+                scrambleElement = document.createElement('div');
+                scrambleElement.id = 'scramble';
+                document.body.prepend(scrambleElement);
+            }
+    
+            // Función para generar el scramble y actualizar la URL
+            async function generateScramble() {
+                const scramble = await randomScrambleForEvent(event);
+                twistyPlayer.puzzle = eventInfo(event).puzzleID;
+                twistyPlayer.alg = scramble;
+                scrambleElement.textContent = scramble;
+            }
+    
+            document.getElementById("generate-scramble").addEventListener("click", generateScramble);
+    
+            document.getElementById("event-select").addEventListener("change", function () {
+                // Actualizar el valor de 'event' con la opción seleccionada
+                event = this.value;
+    
+                // Actualizar la URL con el nuevo valor de 'event'
+                var url = new URL(window.location.href);
+                url.searchParams.set("event", event);
+                window.history.replaceState({}, '', url);
+    
+                // Generar un nuevo scramble con el nuevo valor de 'event'
+                generateScramble();
+            });
+    
+            // Llamar a generateScramble después de verificar y actualizar la URL
+            generateScramble();
+    
+            window.generateScramble = generateScramble;
+            const eventSelect = document.getElementById("event-select");
+            eventSelect.value = event; 
+        };
+    </script>
+    
+    
+    <script src="script.js"></script>
+</body>
+
+</html>
