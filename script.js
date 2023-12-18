@@ -451,8 +451,35 @@ const keydownHandler = (e) => {
     }
   }
 };
+const clickHandler = () => {
+  espaciados++;
+  if (inspeccionSi.checked) {
+    if (espaciados === 1) {
+      mostrarInspeccion();
+    } else if (espaciados === 2) {
+      empezar();
+      detenerContador();
+    } else if (espaciados === 0) {
+      tiempoDisplay.textContent = parseFloat(0).toFixed(decimales);
+    } else {
+      detener();
+    }
+  } else {
+    if (espaciados === 1) {
+      empezar();
+    } else if (espaciados === 2) {
+      detener();
+    } else if (espaciados === 0) {
+      tiempoDisplay.textContent = parseFloat(0).toFixed(decimales);
+    }
+  }
+};
+if(window.innerWidth > 767){
+  document.addEventListener('keydown', keydownHandler);
+}else{
+  tiempoDisplay.addEventListener("click", clickHandler);
+}
 
-document.addEventListener('keydown', keydownHandler);
 
 inspeccionSi.addEventListener('change', () => {
   if (!inspeccionSi.checked) {
